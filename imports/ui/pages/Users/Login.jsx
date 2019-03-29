@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { AutoForm, AutoField, ErrorsField } from 'uniforms-unstyled';
 import SimpleSchema from 'simpl-schema';
 
@@ -29,6 +30,8 @@ export default class Login extends React.Component {
 
 					<button type="submit">Login</button>
 				</AutoForm>
+
+			<Link to="register">Register</Link>
 			</div>
 		);
 	}
