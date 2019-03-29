@@ -5,6 +5,7 @@
 		"start": "meteor run"
 	},
 	"dependencies": {
+		"@ant-design/icons": "^1.1.16",
 		"@babel/runtime": "^7.4.2",
 		"antd": "^3.15.2",
 		"bcrypt": "^3.0.5",
@@ -13,6 +14,7 @@
 		"lodash": "^4.17.11",
 		"meteor-node-stubs": "^0.4.1",
 		"moment": "^2.24.0",
+		"pigeon-maps": "^0.12.1",
 		"prop-types": "^15.7.2",
 		"react": "^16.8.6",
 		"react-dom": "^16.8.6",
