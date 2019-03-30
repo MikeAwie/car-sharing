@@ -13,15 +13,15 @@ export default class extends Component {
 		super(props);
 
 		this.state = {
-			center: [ 90, 90 ],
-			zoom: 12
+			center: [ 20, 20 ],
+			zoom: 2
 		};
 	}
 
 	componentDidMount() {
-		fetch('https://geoip-db.com/json')
+		fetch('https://geoip-db.com/json/', { mode: 'cors' })
 			.then((response) => response.json())
-			.then(({ latitude, longitude }) => this.setState({ center: [ latitude, longitude ] }));
+			.then(({ latitude, longitude }) => this.setState({ center: [ latitude, longitude ], zoom: 12 }));
 	}
 
 	zoomIn = () => {
@@ -42,7 +42,7 @@ export default class extends Component {
 
 	render() {
 		const { center, zoom } = this.state;
-		const { markers } = this.props;
+		const { markers, adding, bookingCar } = this.props;
 
 		return (
 			<div style={{ textAlign: 'center', marginTop: 10 }}>
@@ -74,7 +74,10 @@ export default class extends Component {
 								key={index}
 								anchor={marker.anchor}
 								payload={marker.payload}
+								adding={adding}
+								bookingCar={bookingCar}
 								onClick={this.props.handleMarkerClick}
+								onBook={this.props.onBook}
 							/>
 						))}
 					</Map>
