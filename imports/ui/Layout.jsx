@@ -36,9 +36,6 @@ class AppLayout extends Component {
 						<Menu.Item key="/">Home</Menu.Item>
 						<Menu.Item key="/cars">Cars</Menu.Item>
 
-						{user ? <Menu.Item key="/userid/bookings">My Bookings</Menu.Item> : null}
-						{user ? <Menu.Item key="/userid/cars">My Cars</Menu.Item> : null}
-
 						{user ? (
 							<SubMenu style={{ float: 'right' }} title={user.emails[0].address}>
 								<Menu.Item key="/logout">Logout</Menu.Item>

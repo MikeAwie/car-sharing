@@ -1,46 +1,23 @@
 import React from 'react';
-import { AutoForm, AutoField } from 'uniforms-unstyled';
-import SimpleSchema from 'simpl-schema';
 
-export default class Home extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            number: -1
-        }
-    }
-    getRandomNumber = () =>  {
-        Meteor.call('find.random_number',(err, number) => {
-           this.setState({number})
-        });
-    };
+const Home = () => {
+	return (
+		<div>
+			<h1>Car Sharing:</h1>
+			<div>*Account system with Meteor accounts</div>
+			<div>*Cars page: map with all cars not currently booked</div>
+			<div>*Users can add a Car by selecting it's position on the Map and completing the necessary fields</div>
+			<div>*User's can book a Car by clicking on the car on the map</div>
+			<div>*To book a car a user has to select the dropOff location and the duration of the booking</div>
+			<div>*The map is reactive using Meteor Pub/Sub</div>
+			<div>*The default location of the map is the user's location, obtained from the IP address</div>
+			<div>
+				*The car's location is updated after the booking period to the drop off location by a cron job that runs
+				every minute
+			</div>
+			<div>*The locations are saved as indexed GeoJSON objects</div>
+		</div>
+	);
+};
 
-    submit = (data) => {
-        Meteor.call('method.checkString', data.myValue, (err, result) => {
-            if(err) {
-                return alert(err.details);
-            }
-            console.log(result);
-        });
-    };
-
-    render() {
-        const {number} = this.state;
-
-        return (
-            <div className="home">
-                <button onClick={this.getRandomNumber}>Get Random number</button>
-                <p>My random number: {number}</p>
-
-                <AutoForm onSubmit={this.submit} schema={schema} >
-                    <AutoField name="myValue" />
-                    <button type='submit'> Check my string</button>
-                </AutoForm>
-            </div>
-        )
-    }
-}
-
-const schema = new SimpleSchema({
-    myValue: String
-});
+export default Home;

@@ -72,7 +72,7 @@ export default class Marker extends Component {
 			left: '50%',
 			top: '0%',
 			position: 'absolute',
-			cursor: onClick ? 'pointer' : 'default'
+			cursor: showPopover ? 'pointer' : 'default'
 		};
 
 		return (
