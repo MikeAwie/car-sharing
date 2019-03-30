@@ -7,7 +7,7 @@ import Home from './pages/Home';
 import Register from './pages/Users/Register';
 import Login from './pages/Users/Login';
 
-import Cars from './pages/Cars/Cars';
+import CarsMap from './pages/Cars/CarsMap';
 
 export default () => (
 	<App>
@@ -16,7 +16,7 @@ export default () => (
 			<Route exact path="/register" component={Register} />
 			<Route exact path="/login" component={Login} />
 			<LogOutRoute path={'/logout'} />
-			<Route exact path="/cars" component={Cars} />
+			<Route exact path="/cars" component={CarsMap} />
 		</Switch>
 	</App>
 );

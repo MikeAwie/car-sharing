@@ -33,6 +33,13 @@ export default class Marker extends Component {
 	render() {
 		const { left, top, onClick } = this.props;
 		const { hover } = this.state;
+		const toBeAdded = this.props.payload === 'toBeAdded';
+		let src;
+		if (toBeAdded) {
+			src = '/blueCar.png';
+		} else {
+			src = hover ? '/redCar.png' : 'yellowCar.png';
+		}
 		const style = {
 			transform: 'translate(-50%,-50%)',
 			left: '50%',
@@ -51,8 +58,7 @@ export default class Marker extends Component {
 					onMouseOver={this.handleMouseOver}
 					onMouseOut={this.handleMouseOut}
 				>
-					>
-					<img src={hover ? '/redCar.png' : 'yellowCar.png'} width={48} height={48} />
+					<img src={src} width={48} height={48} />
 				</div>
 			</div>
 		);

@@ -13,9 +13,15 @@ export default class extends Component {
 		super(props);
 
 		this.state = {
-			center: [ 47.1667, 27.6 ],
+			center: [ 90, 90 ],
 			zoom: 12
 		};
+	}
+
+	componentDidMount() {
+		fetch('https://geoip-db.com/json')
+			.then((response) => response.json())
+			.then(({ latitude, longitude }) => this.setState({ center: [ latitude, longitude ] }));
 	}
 
 	zoomIn = () => {
@@ -37,13 +43,14 @@ export default class extends Component {
 	render() {
 		const { center, zoom } = this.state;
 		const { markers } = this.props;
+
 		return (
-			<div style={{ textAlign: 'center', marginTop: 50 }}>
+			<div style={{ textAlign: 'center', marginTop: 10 }}>
 				<div style={{ maxWidth: '100%', margin: '0 auto' }}>
 					<Map
 						limitBounds="edge"
-						center={center}
-						zoom={zoom}
+						center={this.props.center || center}
+						zoom={this.props.zoom || zoom}
 						provider={(x, y, z) => {
 							const retina = typeof window !== 'undefined' && window.devicePixelRatio >= 2 ? '@2x' : '';
 							return `https://maps.wikimedia.org/osm-intl/${z}/${x}/${y}${retina}.png`;
@@ -62,11 +69,11 @@ export default class extends Component {
 						height={400}
 						boxClassname="pigeon-filters"
 					>
-						{Object.keys(markers).map((key) => (
+						{markers.map((marker, index) => (
 							<Marker
-								key={key}
-								anchor={markers[key][0]}
-								payload={key}
+								key={index}
+								anchor={marker.anchor}
+								payload={marker.payload}
 								onClick={this.props.handleMarkerClick}
 							/>
 						))}
